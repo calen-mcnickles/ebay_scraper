@@ -99,7 +99,7 @@ class EbayScraper:
                     result = requests.get(search_multiple_page, headers=headers, timeout=5)
                     soup = bs(result.content, "html.parser")
                     products = soup.find_all("div", class_="s-item__wrapper clearfix")
-                except requests.exceptions.Timeout:
+                except requests.exceptions.Timeout or requests.exceptions.ConnectionError:
                     continue
                 not_scraped = False
 
